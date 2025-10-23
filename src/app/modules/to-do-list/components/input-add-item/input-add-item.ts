@@ -1,9 +1,11 @@
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
   inject,
+  Input,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -11,7 +13,7 @@ import { IListItems } from '../../interface/IListItems.interface';
 
 @Component({
   selector: 'app-input-add-item',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './input-add-item.html',
   styleUrl: './input-add-item.scss',
 })
@@ -20,7 +22,10 @@ export class InputAddItem {
 
   @ViewChild('inputText') public inputText!: ElementRef;
 
-  @Output() public ouputAddListItem = new EventEmitter<IListItems>();
+  @Input({ required: true }) public inputListItems: IListItems[] = [];
+
+  @Output()
+  public ouputAddListItem = new EventEmitter<IListItems>();
   public focusAndAddItem(value: string) {
     if (value) {
       this.#cdr.detectChanges();
