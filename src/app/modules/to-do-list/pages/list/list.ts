@@ -2,12 +2,13 @@ import { Component, signal } from '@angular/core';
 import Swal from 'sweetalert2';
 import { InputAddItem } from '../../components/input-add-item/input-add-item';
 import { InputListItem } from '../../components/input-list-item/input-list-item';
+import { TimeTitle } from '../../components/time-title/time-title';
 import { ELocalStorage } from '../../enum/ELocalStorage.enum';
 import { IListItems } from '../../interface/IListItems.interface';
 
 @Component({
   selector: 'app-list',
-  imports: [InputAddItem, InputListItem],
+  imports: [InputAddItem, InputListItem, TimeTitle],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })
