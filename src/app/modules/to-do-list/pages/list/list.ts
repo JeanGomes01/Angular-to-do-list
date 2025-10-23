@@ -37,6 +37,34 @@ export class List {
     });
   }
 
+  public updateItemCheckbox(newItem: { id: string; checked: boolean }) {
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter((response) => {
+        if (response.id === newItem.id) {
+          response.checked = newItem.checked;
+          return response;
+        }
+        return response;
+      });
+      return oldValue;
+    });
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems()));
+  }
+
+  public updateItemText(newItem: { id: string; value: string }) {
+    this.#setListItems.update((oldValue: IListItems[]) => {
+      oldValue.filter((response) => {
+        if (response.id === newItem.id) {
+          response.value = newItem.value;
+          return response;
+        }
+        return response;
+      });
+      return oldValue;
+    });
+  }
+
   public deleteAllItems() {
     localStorage.removeItem('@my-list');
     return this.#setListItems.set(this.#parseItems());
